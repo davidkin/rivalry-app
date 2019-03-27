@@ -1,0 +1,9 @@
+<mat-list>
+  <h2>Repositories</h2>
+
+  <mat-list-item *ngFor="let repo of repos">
+    <h4 mat-line>{{ repo.name }}</h4>
+    <a mat-line href="{{ repo.html_url }}"> {{ repo.html_url }} </a>
+  </mat-list-item>
+
+</mat-list>
