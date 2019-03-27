@@ -1,6 +1,6 @@
-<h2>Home Page</h2>
-
-<input type="text" placeholder="name">
-<button>show</button>
-
-<p>{{user}}</p>
+<div class="example-form">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Github user" [(ngModel)]="login" value="davidkin">
+  </mat-form-field>
+  <button mat-flat-button color="primary" (click)='openUser(login)'>Show</button>
+</div>
