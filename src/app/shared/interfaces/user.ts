@@ -18,7 +18,7 @@ export interface IUser {
     type:	string;
     site_admin: string;
     name:	string;
-     company:	string;
+    company:	string;
     blog:	string;
     location:	string;
     email:	string;
