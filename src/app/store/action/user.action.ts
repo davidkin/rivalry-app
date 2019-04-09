@@ -16,4 +16,4 @@ export class GetUserSucces implements Action {
     constructor (public payload: IUser) {}
 }
 
-export const UserAction = GetUser ; 
+export type UserAction = GetUser | GetUserSucces; 
