@@ -11,6 +11,9 @@ export const reposReducer = (
                 ...state,
                 repos: action.payload
             }
-        }
+        } 
+
+        default: 
+            return state;
     }
 }
