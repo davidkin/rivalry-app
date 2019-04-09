@@ -11,9 +11,9 @@ export class GetUser implements Action {
     constructor (public payload: string) {}
 }
 
-export class GetUserSucces implements Action {
+export class GetUserSuccess implements Action {
     public readonly type = EUserActions.GetUserSucces;
     constructor (public payload: IUser) {}
 }
 
-export type UserAction = GetUser | GetUserSucces; 
+export type UserAction = GetUser | GetUserSuccess; 
