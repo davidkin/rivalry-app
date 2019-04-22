@@ -20,12 +20,16 @@ export class UserEffects {
     @Effect()
     getUser$ = this._actions$.pipe(
         ofType<GetUser>(EUserActions.GetUser),
-        map((action: GetUser) => action.payload),
-        switchMap((user: string) => {
-            console.log(user);
+        map((action: GetUser) => {
+            console.log('--- UserEffect (action)', action);
             
-            return this._userService.getUserByLogin(user);
+            action.payload
         }),
-        map((data: IUser) => new GetUserSuccess(data))
+        // switchMap((user: string) => {
+        //     console.log(user);
+            
+        //     return this._userService.getUserByLogin(user);
+        // }),
+        // map((data: IUser) => new GetUserSuccess(data))
     )
 }
