@@ -6,9 +6,8 @@ import { switchMap, map, withLatestFrom } from 'rxjs/operators';
 
 import { IAppState } from '../state/app.state';
 import { UserService } from '../../pages/user/user.service';
-import { EReposAction, GetRepos } from '../action/repos.action';
+import { EReposAction, GetRepos, GetReposSucces } from '../action/repos.action';
 import { IRepos } from 'src/app/shared/interfaces/repos';
-
 @Injectable()
 export class ReposEffects {
     constructor(
@@ -16,18 +15,23 @@ export class ReposEffects {
         private _actions$: Actions
     ) {}
 
-    @Effect()
+    @Effect({ dispatch: false })
     getUser$ = this._actions$.pipe(
         ofType<GetRepos>(EReposAction.GetRepos),
         map((action: GetRepos) => {
             console.log('--- ReposEffect (action)', action);
+
+            return action.payload;
         }),
-        switchMap((repos: any) => {
-            console.log('--- ReposEffect (repos)', repos);
+        switchMap((user: string) => {
+            console.log('--- ReposEffect (repos)', user);
             
-            return repos;
-            // return this._userService.getUserByLogin(user);
+            return this._userService.getUserRepos(user);
         }),
-        // map((data: IUser) => new GetUserSuccess(data))
+        map((data: IRepos) => {
+            console.log('--- ReposEffect (inst)', data);
+            
+            return new GetReposSucces(data);
+        })
     )
 }

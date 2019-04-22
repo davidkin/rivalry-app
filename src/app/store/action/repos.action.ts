@@ -8,6 +8,7 @@ export enum EReposAction {
 
 export class GetRepos implements Action {
     public readonly type = EReposAction.GetRepos;
+    constructor(public payload: string) {}
 }
 
 export class GetReposSucces implements Action {

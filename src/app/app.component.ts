@@ -10,13 +10,12 @@ import { selectRepos } from './store/selectors/repos.selectors';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'rivalry-app';
-  config$ = this._store.pipe(select(selectRepos));
 
   constructor(private _store: Store<IAppState>){}
 
   ngOnInit() {
-    this._store.dispatch(new GetRepos());
+    
   }
 }
