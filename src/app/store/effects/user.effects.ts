@@ -8,6 +8,7 @@ import { IAppState } from '../state/app.state';
 import { EUserActions, GetUserSuccess, GetUser} from '../action/user.action';
 import { UserService } from '../../pages/user/user.service';
 import { IUser } from 'src/app/shared/interfaces/user';
+import { selectSelectedUser } from '../selectors/user.selector';
 
 @Injectable()
 export class UserEffects {
@@ -20,16 +21,8 @@ export class UserEffects {
     @Effect()
     getUser$ = this._actions$.pipe(
         ofType<GetUser>(EUserActions.GetUser),
-        map((action: GetUser) => {
-            console.log('--- UserEffect (action)', action);
-            
-            action.payload
-        }),
-        // switchMap((user: string) => {
-        //     console.log(user);
-            
-        //     return this._userService.getUserByLogin(user);
-        // }),
-        // map((data: IUser) => new GetUserSuccess(data))
+        map((action: GetUser) => action.payload),
+        switchMap((user: string) =>  this._userService.getUserByLogin(user)),
+        map((data: IUser) =>  new GetUserSuccess(data))
     )
 }
