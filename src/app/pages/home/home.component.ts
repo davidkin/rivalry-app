@@ -1,5 +1,8 @@
 import {Component} from '@angular/core';
 import { Router } from '@angular/router';
+import { IAppState } from 'src/app/store/state/app.state';
+import { Store } from '@ngrx/store';
+import { GetUser } from 'src/app/store/action/user.action';
 
 @Component({
   selector: 'home',
@@ -10,9 +13,13 @@ import { Router } from '@angular/router';
 export class HomeComponent {
   login: string;
 
-  constructor(private router: Router){}
+  constructor(
+    private router: Router,
+    private _store: Store<IAppState>
+    ){}
   
-  openUser(login){
+  openUser(login: string): void {
+    this._store.dispatch(new GetUser(login));
     this.router.navigate([`user/${login}`]);
   }
 }
