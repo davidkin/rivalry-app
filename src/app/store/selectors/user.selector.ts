@@ -3,11 +3,7 @@ import { createSelector } from '@ngrx/store';
 import { IAppState } from '../state/app.state';
 import { IUserState } from '../state/user.state';
 
-const selectUser = (state: IAppState) => {
-    console.log('--- UserSelector (state)', state);
-    
-    return state.user
-};
+const selectUser = (state: IAppState) => state.user;
 
 export const selectSelectedUser = createSelector (
     selectUser,
