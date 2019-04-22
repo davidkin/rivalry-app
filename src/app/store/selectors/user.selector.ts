@@ -8,7 +8,6 @@ const selectUser = (state: IAppState) => state.user;
 export const selectSelectedUser = createSelector (
     selectUser,
     (state: IUserState) => {
-        console.log('--- selectSelectedUser (state)', state);
         return state
     }
 );
