@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 import { IUserState } from 'src/app/store/state/user.state';
 import { GetRepos } from 'src/app/store/action/repos.action';
 import { selectRepos } from 'src/app/store/selectors/repos.selectors';
+import { IReposState } from 'src/app/store/state/repos.state';
 
 @Component({
     selector: 'user',
@@ -18,14 +19,13 @@ import { selectRepos } from 'src/app/store/selectors/repos.selectors';
     styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-    user$: Observable<IUserState> = this._store.pipe(select(selectSelectedUser));
-    config$ = this._store.pipe(select(selectRepos));
+    public user$: Observable<IUserState> = this._store.pipe(select(selectSelectedUser));
+    // public config$: Observable<IReposState> = this._store.pipe(select(selectRepos));
     
-    user: IUser;
-    repos: IRepos;
+    public user: IUser;
+    public repos: IRepos;
 
-    constructor( 
-        private route: ActivatedRoute, 
+    constructor(
         private userService: UserService, 
         private router: Router,
         private _store: Store<IAppState>
@@ -37,13 +37,17 @@ export class UserComponent implements OnInit {
 
     getRepos(): void {
         this._store.dispatch(new GetRepos(this.user.login));
+        // this.config$ = this._store.pipe(select(selectRepos));
 
-        this.config$.subscribe(repos => {
-            console.log('--- UserComponent (repos)', repos);
+        // console.log('--- UserComponent (config$)', this.config$);
+        
+
+
+        // this.config$.subscribe(repos => {
+        //     console.log('--- UserComponent (repos)', repos);
             
-            // this.repos = repos;
-            // this.router.navigate([`user/${repos}/repos`]);
-        });
+        //     this.repos = repos[0];
+        // });
         
         // this.userService.getUserRepos(this.user.login).subscribe(repos => {
         //     this.repos = repos;
