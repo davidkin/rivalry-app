@@ -1,4 +1,4 @@
-import { ActionReducerMap, ActionReducer } from '@ngrx/store';
+import { ActionReducerMap } from '@ngrx/store';
 
 import { routerReducer } from '@ngrx/router-store';
 

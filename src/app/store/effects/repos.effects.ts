@@ -17,25 +17,15 @@ export class ReposEffects {
         private _actions$: Actions,
         private router: Router,
     ) {}
-    // { dispatch: false }
+    
     @Effect()
     getUser$ = this._actions$.pipe(
         ofType<GetRepos>(EReposAction.GetRepos),
-        map((action: GetRepos) => {
-            console.log('--- ReposEffect (action.payload)', action.payload);
-
-            return action.payload;
-        }),
+        map((action: GetRepos) => action.payload),
         switchMap((user: string) => {
-            console.log('--- ReposEffect (repos)', user);
-
             this.router.navigate([`user/${user}/repos`]);
             return this._userService.getUserRepos(user);
         }),
-        map((data: IRepos) => {
-            console.log('--- ReposEffect (inst)', data);
-            
-            return new GetReposSucces(data);
-        })
+        map((data: IRepos) => new GetReposSucces(data))
     )
 }
