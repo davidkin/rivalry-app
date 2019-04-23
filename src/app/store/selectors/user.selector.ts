@@ -7,7 +7,5 @@ const selectUser = (state: IAppState) => state.user;
 
 export const selectSelectedUser = createSelector (
     selectUser,
-    (state: IUserState) => {
-        return state
-    }
+    (state: IUserState) => state
 );

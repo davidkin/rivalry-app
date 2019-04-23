@@ -20,6 +20,5 @@ export class HomeComponent {
   
   openUser(login: string): void {
     this._store.dispatch(new GetUser(login));
-    this.router.navigate([`user/${login}`]);
   }
 }
